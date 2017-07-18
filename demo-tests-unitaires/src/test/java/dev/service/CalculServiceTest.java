@@ -1,6 +1,6 @@
 package dev.service;
 
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ public class CalculServiceTest {
 		LOG.info("Lorsque j'évalue l'addition de l'expression 1+3+4");
 		int somme = calculService.additionner("1+3+4");
 		LOG.info("Alors j'obtiens le résultat 8");
-		assertTrue(somme == 8);
+		assertThat(somme).isEqualTo(8);
 
  	}
 

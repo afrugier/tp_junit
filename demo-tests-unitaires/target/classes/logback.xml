@@ -16,7 +16,7 @@
 		</encoder>
 	</appender>
 	 <!-- politique de log pour les classes du package dev.console -->
-	<logger name="dev.service" level="INFO">
+	<logger name="dev" level="INFO">
 		<appender-ref ref="STDOUT" />
 	</logger>
 	
