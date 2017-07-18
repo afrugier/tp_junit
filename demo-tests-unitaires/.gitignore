@@ -2,4 +2,4 @@ target
 .classpath
 .project
 .settings
-Error.log
+*.log
