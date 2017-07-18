@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dev.exception.CalculException;
+
 /**
  * Unit test for simple App.
  */
@@ -21,5 +23,12 @@ public class CalculServiceTest {
 		int somme = calculService.additionner("1+3+4");
 		LOG.info("Alors j'obtiens le résultat 8");
 		assertTrue(somme == 8);
+
  	}
+
+	@Test(expected = CalculException.class)
+	public void testException() throws CalculException {
+		CalculService cal = new CalculService();
+		int somme = cal.additionner("aaaa++++");
+	}
 }
