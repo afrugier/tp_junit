@@ -14,6 +14,7 @@ import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dev.exception.CalculException;
 import dev.service.CalculService;
 
 public class AppTest {
@@ -36,13 +37,14 @@ public class AppTest {
 		String expression = "1+34";
 		when(calculService.additionner(expression)).thenReturn(35);
 
-		LOG.info("Lorsque la méthode evaluer est invoquée");
+		 LOG.info("Lorsque la méthode evaluer est invoquée");
 		this.app.evaluer(expression);
 
-		LOG.info("Alors le service est invoqué avec l'expression {}", expression);
+		 LOG.info("Alors le service est invoqué avec l'expression {}",
+		 expression);
 		verify(calculService).additionner(expression);
 
-		LOG.info("Alors dans la console, s'affiche 1+34=35");
+		 LOG.info("Alors dans la console, s'affiche 1+34=35");
 		assertThat(systemOutRule.getLog()).contains("1+34=35");
 	}
 
@@ -51,5 +53,13 @@ public class AppTest {
 		this.app.afficherTitre();
 		String logConsole = systemOutRule.getLog();
 		assertThat(logConsole).contains("**** Application Calculatrice ****");
+	}
+
+	@Test(expected = CalculException.class)
+	public void testCalculException() throws CalculException {
+		String expression = "aa++";
+		when(calculService.additionner(expression)).thenThrow(CalculException.class);
+		this.app.evaluer(expression);
+		assertThat(systemOutRule.getLog()).contains("L'expression aa++ est invalide");
 	}
 }

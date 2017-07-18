@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dev.exception.CalculException;
 import dev.service.CalculService;
 
 public class App {
@@ -26,7 +27,13 @@ public class App {
 	}
 
 	protected void evaluer(String expression) {
-		int somme = calculatrice.additionner(expression);
-		LOG.info("{}={}", expression, somme);
+		try {
+			int somme = calculatrice.additionner(expression);
+			LOG.info("{}={}", expression, somme);
+		} catch (RuntimeException e) {
+			LOG.debug("L'expression {} est invalide", expression);
+			throw new CalculException();
+		}
+
 	}
 }

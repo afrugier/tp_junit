@@ -20,7 +20,7 @@
 		<appender-ref ref="STDOUT" />
 	</logger>
 	
-	<logger name="dev.service" level="DEBUG">
+	<logger name="dev" level="DEBUG">
 		<appender-ref ref="FILE" />
 	</logger>
 	
